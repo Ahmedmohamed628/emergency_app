@@ -24,23 +24,23 @@ class CustomTextFormField extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: TextFormField(
         decoration: InputDecoration(
-          errorStyle: TextStyle(color: Colors.black54),
+          // errorStyle: TextStyle(color: Colors.black54),
           suffixIcon: suffixIcon,
           prefixIcon: prefixIcon,
-          labelStyle: TextStyle(color: Colors.white),
+          labelStyle: TextStyle(color: Colors.red),
           label: Text(label),
           errorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(15),
-              borderSide: BorderSide(width: 3, color: Colors.white38)),
+              borderSide: BorderSide(width: 3, color: Colors.red)),
           focusedErrorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(15),
-              borderSide: BorderSide(width: 3, color: Colors.white38)),
+              borderSide: BorderSide(width: 3, color: Colors.red)),
           enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(15),
-              borderSide: BorderSide(width: 3, color: Colors.white38)),
+              borderSide: BorderSide(width: 3, color: Colors.red)),
           focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(15),
-              borderSide: BorderSide(width: 3, color: Colors.white38)),
+              borderSide: BorderSide(width: 3, color: Colors.red)),
         ),
         keyboardType: keyboardType,
         // de 3mltha 3shan a8yr no3 el keyboard 3la 7sb ana hktb fe el email/ password/ name.. lw password yb2a keyboard arkam w hakza

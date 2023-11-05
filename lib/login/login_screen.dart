@@ -22,7 +22,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       // resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.red,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.red,
         title: Text('Ambulance App'),
@@ -51,13 +51,13 @@ class _LoginScreenState extends State<LoginScreen> {
                           height: MediaQuery.of(context).size.height * 0.01),
                       CustomTextFormField(
                           prefixIcon:
-                              Icon(Icons.email_rounded, color: Colors.white70),
+                              Icon(Icons.email_rounded, color: Colors.red),
                           label: 'Email address',
                           keyboardType: TextInputType.emailAddress,
                           controller: emailController,
                           validator: (text) {
                             if (text == null || text.trim().isEmpty) {
-                              return 'Please Enter An Email';
+                              return 'Please Enter an Email';
                             }
                             bool emailValid = RegExp(
                                     r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
@@ -68,7 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             return null;
                           }),
                       CustomTextFormField(
-                          prefixIcon: Icon(Icons.lock, color: Colors.white70),
+                          prefixIcon: Icon(Icons.lock, color: Colors.red),
                           suffixIcon: IconButton(
                             icon: Icon(isObscure
                                 ? Icons.visibility
@@ -78,17 +78,21 @@ class _LoginScreenState extends State<LoginScreen> {
                                 isObscure = !isObscure;
                               });
                             },
-                            color: Colors.white,
+                            color: Colors.red,
                           ),
                           label: 'Password',
+                          isPassword: isObscure,
                           keyboardType: TextInputType.number,
                           controller: passwordController,
                           validator: (text) {
                             if (text == null || text.trim().isEmpty) {
-                              return 'Please Enter User Name';
+                              return 'Please Enter a Password';
                             }
                             if (text.length < 6) {
                               return 'Password should be at least 6 characters';
+                            }
+                            if (text != passwordController.text) {
+                              return "password doesn't match";
                             }
                             return null;
                           }),
@@ -101,11 +105,11 @@ class _LoginScreenState extends State<LoginScreen> {
                           },
                           child: Text('Login',
                               style: TextStyle(
-                                  color: Colors.red,
+                                  color: Colors.white,
                                   fontWeight: FontWeight.w600,
                                   fontSize: 15)),
                           style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.white,
+                              backgroundColor: Colors.red,
                               padding: EdgeInsets.symmetric(vertical: 10)),
                         ),
                       ),
@@ -124,7 +128,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               child: Text('Sign Up',
                                   style: TextStyle(
                                       fontSize: 17,
-                                      color: Colors.white,
+                                      color: Colors.red,
                                       fontWeight: FontWeight.w600)))
                         ],
                       ),
