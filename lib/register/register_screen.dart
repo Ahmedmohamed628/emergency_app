@@ -16,7 +16,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
   var passwordController = TextEditingController();
   var confirmationPasswordController = TextEditingController();
   var formKey = GlobalKey<FormState>();
-  bool isObscure = true;
 
   @override
   Widget build(BuildContext context) {
@@ -82,44 +81,22 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           }),
                       CustomTextFormField(
                         prefixIcon: Icon(Icons.lock, color: Colors.red),
-                        suffixIcon: IconButton(
-                          icon: Icon(isObscure
-                              ? Icons.visibility
-                              : Icons.visibility_off),
-                          onPressed: () {
-                            setState(() {
-                              isObscure = !isObscure;
-                            });
-                          },
-                          color: Colors.red,
-                        ),
                         label: 'Password',
                         keyboardType: TextInputType.number,
                         controller: passwordController,
                         validator: (text) {
                           if (text == null || text.trim().isEmpty) {
-                            return 'Please Enter a Password';
+                            return 'Please Enter a password';
                           }
                           if (text.length < 6) {
                             return 'Password should be at least 6 characters';
                           }
                           return null;
                         },
-                        isPassword: isObscure,
+                        isPassword: true,
                       ),
                       CustomTextFormField(
                         prefixIcon: Icon(Icons.password, color: Colors.red),
-                        suffixIcon: IconButton(
-                          icon: Icon(isObscure
-                              ? Icons.visibility
-                              : Icons.visibility_off),
-                          onPressed: () {
-                            setState(() {
-                              isObscure = !isObscure;
-                            });
-                          },
-                          color: Colors.red,
-                        ),
                         //lock_outline_sharp
                         label: 'Confirm Password',
                         keyboardType: TextInputType.number,
@@ -133,7 +110,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           }
                           return null;
                         },
-                        isPassword: isObscure,
+                        isPassword: true,
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(
