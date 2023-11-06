@@ -22,7 +22,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       // resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.red,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.red,
         title: Text('Ambulance App'),
@@ -51,8 +51,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       SizedBox(
                           height: MediaQuery.of(context).size.height * 0.01),
                       CustomTextFormField(
-                          prefixIcon: Icon(Icons.person_pin_sharp,
-                              color: Colors.white70),
+                          prefixIcon:
+                              Icon(Icons.person_pin_sharp, color: Colors.red),
                           //Icons.drive_file_rename_outline
                           label: 'User Name',
                           controller: nameController,
@@ -64,7 +64,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           }),
                       CustomTextFormField(
                           prefixIcon:
-                              Icon(Icons.email_rounded, color: Colors.white70),
+                              Icon(Icons.email_rounded, color: Colors.red),
                           label: 'Email address',
                           keyboardType: TextInputType.emailAddress,
                           controller: emailController,
@@ -81,7 +81,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             return null;
                           }),
                       CustomTextFormField(
-                        prefixIcon: Icon(Icons.lock, color: Colors.white70),
+                        prefixIcon: Icon(Icons.lock, color: Colors.red),
                         suffixIcon: IconButton(
                           icon: Icon(isObscure
                               ? Icons.visibility
@@ -91,14 +91,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               isObscure = !isObscure;
                             });
                           },
-                          color: Colors.white,
+                          color: Colors.red,
                         ),
                         label: 'Password',
                         keyboardType: TextInputType.number,
                         controller: passwordController,
                         validator: (text) {
                           if (text == null || text.trim().isEmpty) {
-                            return 'Please Enter User Name';
+                            return 'Please Enter a Password';
                           }
                           if (text.length < 6) {
                             return 'Password should be at least 6 characters';
@@ -108,7 +108,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         isPassword: isObscure,
                       ),
                       CustomTextFormField(
-                        prefixIcon: Icon(Icons.password, color: Colors.white70),
+                        prefixIcon: Icon(Icons.password, color: Colors.red),
                         suffixIcon: IconButton(
                           icon: Icon(isObscure
                               ? Icons.visibility
@@ -118,7 +118,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               isObscure = !isObscure;
                             });
                           },
-                          color: Colors.white,
+                          color: Colors.red,
                         ),
                         //lock_outline_sharp
                         label: 'Confirm Password',
@@ -144,11 +144,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           },
                           child: Text('Register',
                               style: TextStyle(
-                                  color: Colors.red,
+                                  color: Colors.white,
                                   fontWeight: FontWeight.w600,
                                   fontSize: 15)),
                           style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.white,
+                              backgroundColor: Colors.red,
                               padding: EdgeInsets.symmetric(vertical: 10)),
                         ),
                       ),
@@ -166,7 +166,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             },
                             child: Text('Login',
                                 style: TextStyle(
-                                    color: Colors.white,
+                                    color: Colors.red,
                                     fontWeight: FontWeight.w600,
                                     fontSize: 17)),
                           ),
