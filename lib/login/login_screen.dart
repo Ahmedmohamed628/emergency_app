@@ -69,17 +69,6 @@ class _LoginScreenState extends State<LoginScreen> {
                           }),
                       CustomTextFormField(
                           prefixIcon: Icon(Icons.lock, color: Colors.red),
-                          suffixIcon: IconButton(
-                            icon: Icon(isObscure
-                                ? Icons.visibility
-                                : Icons.visibility_off),
-                            onPressed: () {
-                              setState(() {
-                                isObscure = !isObscure;
-                              });
-                            },
-                            color: Colors.red,
-                          ),
                           label: 'Password',
                           isPassword: isObscure,
                           keyboardType: TextInputType.number,
