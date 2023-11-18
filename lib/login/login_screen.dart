@@ -1,4 +1,5 @@
 import 'package:ambulance/component/custom_text_form_field.dart';
+import 'package:ambulance/homeScreen.dart';
 import 'package:flutter/material.dart';
 
 import '../register/register_screen.dart';
@@ -51,7 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           height: MediaQuery.of(context).size.height * 0.01),
                       CustomTextFormField(
                           prefixIcon:
-                              Icon(Icons.email_rounded, color: Colors.red),
+                          Icon(Icons.email_rounded, color: Colors.red),
                           label: 'Email address',
                           keyboardType: TextInputType.emailAddress,
                           controller: emailController,
@@ -60,7 +61,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               return 'Please Enter an Email';
                             }
                             bool emailValid = RegExp(
-                                    r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                                r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                                 .hasMatch(text);
                             if (!emailValid) {
                               return 'Please Enter Valid Email';
@@ -90,6 +91,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             horizontal: 20, vertical: 10),
                         child: ElevatedButton(
                           onPressed: () {
+                            Navigator.of(context)
+                                .pushReplacementNamed(HomeScreen.routeName);
                             login();
                           },
                           child: Text('Login',
