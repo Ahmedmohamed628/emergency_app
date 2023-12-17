@@ -1,6 +1,7 @@
+import 'package:ambulance/theme/theme.dart';
 import 'package:flutter/material.dart';
 
-class CustomTextFormField extends StatefulWidget {
+class CustomTextFormFieldScreens extends StatefulWidget {
   String label;
   TextInputType keyboardType;
   TextEditingController controller;
@@ -9,7 +10,7 @@ class CustomTextFormField extends StatefulWidget {
   Widget? suffixIcon;
   Widget? prefixIcon;
 
-  CustomTextFormField(
+  CustomTextFormFieldScreens(
       {required this.label,
       this.keyboardType = TextInputType.text,
       required this.controller,
@@ -19,12 +20,12 @@ class CustomTextFormField extends StatefulWidget {
       this.prefixIcon});
 
   @override
-  State<CustomTextFormField> createState() => _CustomTextFormFieldState();
+  State<CustomTextFormFieldScreens> createState() =>
+      _CustomTextFormFieldScreensState();
 }
 
-class _CustomTextFormFieldState extends State<CustomTextFormField> {
-  bool isObscure = false;
-
+class _CustomTextFormFieldScreensState
+    extends State<CustomTextFormFieldScreens> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -32,39 +33,26 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       child: TextFormField(
         decoration: InputDecoration(
           // errorStyle: TextStyle(color: Colors.black54),
-          suffixIcon: widget.isPassword
-              ? IconButton(
-                  icon:
-                      Icon(isObscure ? Icons.visibility_off : Icons.visibility),
-                  onPressed: () {
-                    setState(() {
-                      isObscure = !isObscure;
-                    });
-                  },
-                  color: Colors.red)
-              : null,
+          suffixIcon: widget.suffixIcon,
           prefixIcon: widget.prefixIcon,
-          labelStyle: TextStyle(color: Colors.red),
+          labelStyle: TextStyle(color: MyTheme.redColor),
           label: Text(widget.label),
           errorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(15),
-              borderSide: BorderSide(width: 3, color: Colors.red)),
+              borderSide: BorderSide(width: 3, color: MyTheme.redColor)),
           focusedErrorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(15),
-              borderSide: BorderSide(width: 3, color: Colors.red)),
+              borderSide: BorderSide(width: 3, color: MyTheme.redColor)),
           enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(15),
-              borderSide: BorderSide(width: 3, color: Colors.red)),
+              borderSide: BorderSide(width: 3, color: MyTheme.redColor)),
           focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(15),
-              borderSide: BorderSide(width: 3, color: Colors.red)),
+              borderSide: BorderSide(width: 3, color: MyTheme.redColor)),
         ),
         keyboardType: widget.keyboardType,
-        // de 3mltha 3shan a8yr no3 el keyboard 3la 7sb ana hktb fe el email/ password/ name.. lw password yb2a keyboard arkam w hakza
         controller: widget.controller,
-        // 3shan a5od el data elly ktbha el user
         validator: widget.validator,
-        obscureText: isObscure,
       ),
     );
   }

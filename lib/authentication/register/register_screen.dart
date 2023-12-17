@@ -1,6 +1,8 @@
-import 'package:ambulance/component/custom_text_form_field.dart';
+import 'package:ambulance/screen_selection/screen_selection.dart';
+import 'package:ambulance/theme/theme.dart';
 import 'package:flutter/material.dart';
 
+import '../component/custom_text_form_field.dart';
 import '../login/login_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -16,6 +18,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
   var passwordController = TextEditingController();
   var confirmationPasswordController = TextEditingController();
   var formKey = GlobalKey<FormState>();
+  var phoneNumber = TextEditingController();
+  var address = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +27,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       // resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.red,
+        backgroundColor: MyTheme.redColor,
         title: Text('Ambulance App'),
         centerTitle: true,
       ),
@@ -37,7 +41,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               child: CircleAvatar(
                 backgroundImage: AssetImage('assets/images/ambulance_icon.png'),
                 radius: 60,
-                backgroundColor: Colors.red,
+                backgroundColor: MyTheme.redColor,
               ),
             ),
             // Image.asset('assets/images/ambulance_icon.png', alignment: Alignment.topCenter),
@@ -49,9 +53,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     children: [
                       SizedBox(
                           height: MediaQuery.of(context).size.height * 0.01),
+                      // user name
                       CustomTextFormField(
-                          prefixIcon:
-                              Icon(Icons.person_pin_sharp, color: Colors.red),
+                          prefixIcon: Icon(Icons.person_pin_sharp,
+                              color: MyTheme.redColor),
                           //Icons.drive_file_rename_outline
                           label: 'User Name',
                           controller: nameController,
@@ -61,9 +66,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             }
                             return null;
                           }),
+                      // email
                       CustomTextFormField(
-                          prefixIcon:
-                              Icon(Icons.email_rounded, color: Colors.red),
+                          prefixIcon: Icon(Icons.email_rounded,
+                              color: MyTheme.redColor),
                           label: 'Email address',
                           keyboardType: TextInputType.emailAddress,
                           controller: emailController,
@@ -79,8 +85,41 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             }
                             return null;
                           }),
+                      // phone
                       CustomTextFormField(
-                        prefixIcon: Icon(Icons.lock, color: Colors.red),
+                        label: 'Phone number',
+                        controller: phoneNumber,
+                        prefixIcon: Icon(Icons.phone, color: MyTheme.redColor),
+                        validator: (text) {
+                          if (text == null || text.trim().isEmpty) {
+                            return 'Please enter a phone number';
+                          }
+                          if (text.length < 12) {
+                            return 'Enter a valid phone number';
+                          }
+                          return null;
+                        },
+                      ),
+                      //address
+                      CustomTextFormField(
+                        label: 'Address',
+                        controller: address,
+                        prefixIcon:
+                            Icon(Icons.home_filled, color: MyTheme.redColor),
+                        validator: (text) {
+                          if (text == null || text.trim().isEmpty) {
+                            return 'Please enter an address';
+                          }
+                          // valid address???????????????????????????????????????????
+                          if (text.length < 12) {
+                            return 'Enter a valid address';
+                          }
+                          return null;
+                        },
+                      ),
+                      //password
+                      CustomTextFormField(
+                        prefixIcon: Icon(Icons.lock, color: MyTheme.redColor),
                         label: 'Password',
                         keyboardType: TextInputType.number,
                         controller: passwordController,
@@ -95,8 +134,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         },
                         isPassword: true,
                       ),
+                      //confirm pass
                       CustomTextFormField(
-                        prefixIcon: Icon(Icons.password, color: Colors.red),
+                        prefixIcon:
+                            Icon(Icons.password, color: MyTheme.redColor),
                         //lock_outline_sharp
                         label: 'Confirm Password',
                         keyboardType: TextInputType.number,
@@ -112,12 +153,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         },
                         isPassword: true,
                       ),
+                      // button of registration
                       Padding(
                         padding: const EdgeInsets.symmetric(
                             horizontal: 20, vertical: 10),
                         child: ElevatedButton(
                           onPressed: () {
                             register();
+                            Navigator.of(context)
+                                .pushNamed(ScreenSelection.routeName);
                           },
                           child: Text('Register',
                               style: TextStyle(
@@ -125,7 +169,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   fontWeight: FontWeight.w600,
                                   fontSize: 15)),
                           style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.red,
+                              backgroundColor: MyTheme.redColor,
                               padding: EdgeInsets.symmetric(vertical: 10)),
                         ),
                       ),
@@ -143,7 +187,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             },
                             child: Text('Login',
                                 style: TextStyle(
-                                    color: Colors.red,
+                                    color: MyTheme.redColor,
                                     fontWeight: FontWeight.w600,
                                     fontSize: 17)),
                           ),

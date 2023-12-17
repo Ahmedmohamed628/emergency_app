@@ -1,20 +1,19 @@
+import 'package:ambulance/patient_screens/Screens/Chat/Chat.dart';
+import 'package:ambulance/patient_screens/Screens/Hisorty/History.dart';
+import 'package:ambulance/patient_screens/Screens/Medications/Medications.dart';
+import 'package:ambulance/patient_screens/Screens/Root/Root.dart';
+import 'package:ambulance/patient_screens/Screens/Settings/Settings.dart';
 import 'package:ambulance/theme/theme.dart';
 import 'package:flutter/material.dart';
 
-import 'Screens/Chat/Chat.dart';
-import 'Screens/Hisorty/History.dart';
-import 'Screens/Medications/Medications.dart';
-import 'Screens/Root/Root.dart';
-import 'Screens/Settings/Settings.dart';
-
-class HomeScreen extends StatefulWidget {
-  static const String routeName = 'Home-screen';
+class HomeScreenPatient extends StatefulWidget {
+  static const String routeName = 'Home-screen-patient';
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<HomeScreenPatient> createState() => _HomeScreenPatientState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenPatientState extends State<HomeScreenPatient> {
   int selectedIndex = 2;
 
   @override

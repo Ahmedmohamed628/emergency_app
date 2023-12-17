@@ -1,12 +1,23 @@
-import 'package:ambulance/Screens/Chat/Chat.dart';
-import 'package:ambulance/Screens/Hisorty/History.dart';
-import 'package:ambulance/Screens/Medications/Medications.dart';
-import 'package:ambulance/Screens/Root/Root.dart';
-import 'package:ambulance/Screens/Settings/Settings.dart';
-import 'package:ambulance/homeScreen.dart';
-import 'package:ambulance/login/login_screen.dart';
-import 'package:ambulance/register/register_screen.dart';
+import 'package:ambulance/hospital_screens/Screens_of_hospital/Chat/Chat.dart';
+import 'package:ambulance/hospital_screens/Screens_of_hospital/Hisorty/History.dart';
+import 'package:ambulance/hospital_screens/Screens_of_hospital/Settings/Settings.dart';
+import 'package:ambulance/hospital_screens/home_screen_hospital.dart';
+import 'package:ambulance/hospital_screens/screen_hospital_registeration.dart';
+import 'package:ambulance/observer_screens/home_screen_observer.dart';
+import 'package:ambulance/observer_screens/screen_observer_registeration.dart';
+import 'package:ambulance/patient_screens/Screens/Chat/Chat.dart';
+import 'package:ambulance/patient_screens/Screens/Hisorty/History.dart';
+import 'package:ambulance/patient_screens/Screens/Medications/Medications.dart';
+import 'package:ambulance/patient_screens/Screens/Root/Root.dart';
+import 'package:ambulance/patient_screens/Screens/Settings/Settings.dart';
+import 'package:ambulance/patient_screens/homeScreen_patient.dart';
+import 'package:ambulance/patient_screens/screen_patient_registeration.dart';
+import 'package:ambulance/screen_selection/screen_selection.dart';
+import 'package:ambulance/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
+
+import 'authentication/login/login_screen.dart';
+import 'authentication/register/register_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -17,8 +28,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: RegisterScreen.routeName,
+      initialRoute: SplashScreen.routeName,
+      //RegisterScreen.routeName //ScreenSelection.routeName
       routes: {
+        SplashScreen.routeName: (context) => SplashScreen(),
         RegisterScreen.routeName: (context) => RegisterScreen(),
         LoginScreen.routeName: (context) => LoginScreen(),
         RootScreen.routeName: (context) => RootScreen(),
@@ -26,7 +39,19 @@ class MyApp extends StatelessWidget {
         HistoryScreen.routeName: (context) => HistoryScreen(),
         ChatScreen.routeName: (context) => ChatScreen(),
         MedicationScreen.routeName: (context) => MedicationScreen(),
-        HomeScreen.routeName: (context) => HomeScreen()
+        HomeScreenPatient.routeName: (context) => HomeScreenPatient(),
+        ScreenPatientRegisteration.routeName: (context) =>
+            ScreenPatientRegisteration(),
+        ScreenSelection.routeName: (context) => ScreenSelection(),
+        HomeScreenHospital.routeName: (context) => HomeScreenHospital(),
+        ChatScreenHospital.routeName: (context) => ChatScreenHospital(),
+        HistoryScreenHospital.routeName: (context) => HistoryScreenHospital(),
+        SettingsScreenHospital.routeName: (context) => SettingsScreenHospital(),
+        ScreenHospitalRegisteration.routeName: (context) =>
+            ScreenHospitalRegisteration(),
+        HomeScreenObserver.routeName: (context) => HomeScreenObserver(),
+        ScreenObserverRegisteration.routeName: (context) =>
+            ScreenObserverRegisteration(),
       },
     );
   }

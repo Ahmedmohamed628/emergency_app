@@ -1,16 +1,19 @@
-import 'package:ambulance/component/custom_text_form_field.dart';
-import 'package:ambulance/homeScreen.dart';
+import 'package:ambulance/theme/theme.dart';
 import 'package:flutter/material.dart';
 
+import '../component/custom_text_form_field.dart';
 import '../register/register_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String routeName = 'login-screen';
 
+  // feh moshkela fe el index????????????????????????????????????????????????????????????????????????????????????????????
+  // int index;
+  // LoginScreen({required this.index});
+
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
-
 class _LoginScreenState extends State<LoginScreen> {
   var nameController = TextEditingController();
   var emailController = TextEditingController();
@@ -19,13 +22,17 @@ class _LoginScreenState extends State<LoginScreen> {
   var formKey = GlobalKey<FormState>();
   bool isObscure = true;
 
+  // List<String> homeScreens = [HomeScreenPatient.routeName, HomeScreenHospital.routeName, HomeScreenObserver.routeName];
+
   @override
   Widget build(BuildContext context) {
+    // 3lshan ageeb el index mn el args
+    // int index = ModalRoute.of(context)!.settings.arguments as int;
     return Scaffold(
       // resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.red,
+        backgroundColor: MyTheme.redColor,
         title: Text('Ambulance App'),
         centerTitle: true,
       ),
@@ -39,7 +46,7 @@ class _LoginScreenState extends State<LoginScreen> {
               child: CircleAvatar(
                 backgroundImage: AssetImage('assets/images/ambulance_icon.png'),
                 radius: 60,
-                backgroundColor: Colors.red,
+                backgroundColor: MyTheme.redColor,
               ),
             ),
             Form(
@@ -51,8 +58,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       SizedBox(
                           height: MediaQuery.of(context).size.height * 0.01),
                       CustomTextFormField(
-                          prefixIcon:
-                          Icon(Icons.email_rounded, color: Colors.red),
+                          prefixIcon: Icon(Icons.email_rounded,
+                              color: MyTheme.redColor),
                           label: 'Email address',
                           keyboardType: TextInputType.emailAddress,
                           controller: emailController,
@@ -61,7 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               return 'Please Enter an Email';
                             }
                             bool emailValid = RegExp(
-                                r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                                    r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                                 .hasMatch(text);
                             if (!emailValid) {
                               return 'Please Enter Valid Email';
@@ -69,7 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             return null;
                           }),
                       CustomTextFormField(
-                          prefixIcon: Icon(Icons.lock, color: Colors.red),
+                          prefixIcon: Icon(Icons.lock, color: MyTheme.redColor),
                           label: 'Password',
                           isPassword: isObscure,
                           keyboardType: TextInputType.number,
@@ -91,8 +98,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             horizontal: 20, vertical: 10),
                         child: ElevatedButton(
                           onPressed: () {
-                            Navigator.of(context)
-                                .pushReplacementNamed(HomeScreen.routeName);
+                            // Navigator.of(context).pushReplacementNamed(HomeScreenPatient.routeName);
+                            // Navigator.of(context).pushNamed(homeScreens[index]);
+
                             login();
                           },
                           child: Text('Login',
@@ -101,7 +109,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   fontWeight: FontWeight.w600,
                                   fontSize: 15)),
                           style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.red,
+                              backgroundColor: MyTheme.redColor,
                               padding: EdgeInsets.symmetric(vertical: 10)),
                         ),
                       ),
@@ -120,7 +128,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               child: Text('Sign Up',
                                   style: TextStyle(
                                       fontSize: 17,
-                                      color: Colors.red,
+                                      color: MyTheme.redColor,
                                       fontWeight: FontWeight.w600)))
                         ],
                       ),
