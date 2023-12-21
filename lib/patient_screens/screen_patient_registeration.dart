@@ -124,6 +124,7 @@ class ScreenPatientRegisteration extends StatelessWidget {
                     // navigate to home screen patient
                     Navigator.of(context)
                         .pushReplacementNamed(HomeScreenPatient.routeName);
+
                     // Navigator.of(context).pushReplacementNamed(LoginScreen.routeName, arguments: 0);
                   },
                   child: Text('Done',
