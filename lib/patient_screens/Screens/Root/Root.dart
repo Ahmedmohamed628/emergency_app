@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:ambulance/healthconnectmethodes.dart';
 import 'package:ambulance/theme/theme.dart';
 import 'package:flutter/material.dart';
 
@@ -9,6 +12,19 @@ class RootScreen extends StatefulWidget {
 }
 
 class _RootScreenState extends State<RootScreen> {
+  late Timer timer;
+
+  @override
+  void initState() {
+    super.initState();
+    timer = Timer.periodic(Duration(seconds: 30), (timer) {
+      fetchData(() {
+        print('-----Inside-------');
+        timer.cancel();
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +40,9 @@ class _RootScreenState extends State<RootScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  // fetchData();
+                },
                 child: CircleAvatar(
                   backgroundColor: Color(0xFFa00c0e),
                   radius: 65,

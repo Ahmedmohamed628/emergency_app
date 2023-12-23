@@ -2,6 +2,7 @@ import 'package:ambulance/authentication/component/custom_text_form_field.dart';
 import 'package:ambulance/patient_screens/homeScreen_patient.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import '../screen_selection/screen_selection.dart';
 import '../theme/theme.dart';
@@ -124,6 +125,7 @@ class ScreenPatientRegisteration extends StatelessWidget {
                     // navigate to home screen patient
                     Navigator.of(context)
                         .pushReplacementNamed(HomeScreenPatient.routeName);
+                    authorize();
 
                     // Navigator.of(context).pushReplacementNamed(LoginScreen.routeName, arguments: 0);
                   },
@@ -143,4 +145,9 @@ class ScreenPatientRegisteration extends StatelessWidget {
       ),
     );
   }
+}
+
+Future authorize() async {
+  await Permission.activityRecognition.request();
+  await Permission.location.request();
 }
