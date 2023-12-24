@@ -36,8 +36,8 @@ class MyApp extends StatelessWidget {
         LoginScreen.routeName: (context) => LoginScreen(),
         RootScreen.routeName: (context) => RootScreen(),
         SettingsScreen.routeName: (context) => SettingsScreen(),
-        HistoryScreen.routeName: (context) => HistoryScreen(),
-        ChatScreen.routeName: (context) => ChatScreen(),
+        HistoryScreenPatient.routeName: (context) => HistoryScreenPatient(),
+        ChatScreenPatient.routeName: (context) => ChatScreenPatient(),
         MedicationScreen.routeName: (context) => MedicationScreen(),
         HomeScreenPatient.routeName: (context) => HomeScreenPatient(),
         ScreenPatientRegisteration.routeName: (context) =>

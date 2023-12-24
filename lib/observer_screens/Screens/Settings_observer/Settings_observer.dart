@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../../theme/theme.dart';
 
-class SettingsScreenHospital extends StatelessWidget {
-  static const String routeName = 'settings-screen-hospital';
+class SettingsScreenObserver extends StatelessWidget {
+  static const String routeName = 'settings-screen-observer';
 
   @override
   Widget build(BuildContext context) {

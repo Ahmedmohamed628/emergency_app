@@ -38,6 +38,44 @@ class ScreenPatientRegisteration extends StatelessWidget {
               Container(
                   padding: EdgeInsets.symmetric(horizontal: 70),
                   child: Lottie.asset('assets/images/patient_lottie.json')),
+              //id
+              CustomTextFormField(
+                label: 'National Id',
+                controller: id,
+                prefixIcon: Icon(Icons.perm_identity, color: MyTheme.redColor),
+                validator: (text) {
+                  if (text == null || text.trim().isEmpty) {
+                    return 'Please enter your national id';
+                  }
+                  if (text.length < 14) {
+                    return 'Enter a valid national id';
+                  }
+                  return null;
+                },
+              ),
+              //gender
+              CustomTextFormField(
+                label: 'Gender', controller: gender,
+                // mlhash suffixation icon??????????????????????????
+                prefixIcon: Icon(Icons.perm_identity, color: MyTheme.redColor),
+                validator: (text) {
+                  if (text == null || text.trim().isEmpty) {
+                    return 'Please enter your age';
+                  }
+                  return null;
+                },
+              ),
+              //age
+              CustomTextFormField(
+                label: 'Age', controller: age,
+                // mlhash suffixation icon??????????????????????????
+                validator: (text) {
+                  if (text == null || text.trim().isEmpty) {
+                    return 'Please enter your age';
+                  }
+                  return null;
+                },
+              ),
               //chronic diseases
               CustomTextFormField(
                 label: 'Chronic Diseases', controller: chronicDiseases,
@@ -77,44 +115,6 @@ class ScreenPatientRegisteration extends StatelessWidget {
                   return null;
                 },
               ),
-              //age
-              CustomTextFormField(
-                label: 'Age', controller: age,
-                // mlhash suffixation icon??????????????????????????
-                validator: (text) {
-                  if (text == null || text.trim().isEmpty) {
-                    return 'Please enter your age';
-                  }
-                  return null;
-                },
-              ),
-              //gender
-              CustomTextFormField(
-                label: 'Gender', controller: gender,
-                // mlhash suffixation icon??????????????????????????
-                prefixIcon: Icon(Icons.perm_identity, color: MyTheme.redColor),
-                validator: (text) {
-                  if (text == null || text.trim().isEmpty) {
-                    return 'Please enter your age';
-                  }
-                  return null;
-                },
-              ),
-              //id
-              CustomTextFormField(
-                label: 'National Id',
-                controller: id,
-                prefixIcon: Icon(Icons.perm_identity, color: MyTheme.redColor),
-                validator: (text) {
-                  if (text == null || text.trim().isEmpty) {
-                    return 'Please enter your national id';
-                  }
-                  if (text.length < 14) {
-                    return 'Enter a valid national id';
-                  }
-                  return null;
-                },
-              ),
 
               Padding(
                 padding:
@@ -124,7 +124,6 @@ class ScreenPatientRegisteration extends StatelessWidget {
                     // navigate to home screen patient
                     Navigator.of(context)
                         .pushReplacementNamed(HomeScreenPatient.routeName);
-                    // Navigator.of(context).pushReplacementNamed(LoginScreen.routeName, arguments: 0);
                   },
                   child: Text('Done',
                       style: TextStyle(

@@ -8,9 +8,9 @@ import '../authentication/component/custom_text_form_field.dart';
 
 class ScreenHospitalRegisteration extends StatelessWidget {
   static const String routeName = 'screen-hospital';
-  var phoneNumber = TextEditingController();
-  var address = TextEditingController();
+  var doctorId = TextEditingController();
   var doctorName = TextEditingController();
+  var gender = TextEditingController();
   var formKey = GlobalKey<FormState>();
 
   @override
@@ -35,20 +35,23 @@ class ScreenHospitalRegisteration extends StatelessWidget {
               Container(
                   padding: EdgeInsets.symmetric(horizontal: 30),
                   child: Lottie.asset('assets/images/hospital_lottie.json')),
+
+              //doctor id
               CustomTextFormField(
-                label: 'Phone number',
-                controller: phoneNumber,
-                prefixIcon: Icon(Icons.phone, color: MyTheme.redColor),
+                label: 'Doctor id',
+                controller: doctorId,
+                suffixIcon: Icon(Icons.home_filled, color: MyTheme.redColor),
                 validator: (text) {
                   if (text == null || text.trim().isEmpty) {
-                    return 'Please enter a phone number';
+                    return 'Please enter a doctor id';
                   }
-                  if (text.length < 12) {
-                    return 'Enter a valid phone number';
+                  if (text.length < 14) {
+                    return 'Enter a valid doctor id';
                   }
                   return null;
                 },
               ),
+              //doctor name
               CustomTextFormField(
                 label: 'Doctor Name',
                 controller: doctorName,
@@ -61,17 +64,14 @@ class ScreenHospitalRegisteration extends StatelessWidget {
                   return null;
                 },
               ),
+              //gender
               CustomTextFormField(
-                label: 'Address',
-                controller: address,
-                suffixIcon: Icon(Icons.home_filled, color: MyTheme.redColor),
+                label: 'Gender', controller: gender,
+                // mlhash suffixation icon??????????????????????????
+                prefixIcon: Icon(Icons.perm_identity, color: MyTheme.redColor),
                 validator: (text) {
                   if (text == null || text.trim().isEmpty) {
-                    return 'Please enter an address';
-                  }
-                  // valid address???????????????????????????????????????????
-                  if (text.length < 12) {
-                    return 'Enter a valid address';
+                    return 'Please enter your gender';
                   }
                   return null;
                 },
@@ -88,7 +88,6 @@ class ScreenHospitalRegisteration extends StatelessWidget {
                     // navigate to home screen patient
                     Navigator.of(context)
                         .pushReplacementNamed(HomeScreenHospital.routeName);
-                    // Navigator.of(context).pushReplacementNamed(LoginScreen.routeName, arguments: 1);
                   },
                   child: Text('Done',
                       style: TextStyle(

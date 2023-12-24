@@ -143,7 +143,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
   void login() {
     if (formKey.currentState!.validate() == true) {
-      /// register
+      /// login
+      // Navigator.of(context).pushReplacementNamed(RegisterScreen.routeName);
     }
   }
 }

@@ -205,6 +205,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   void register() {
     if (formKey.currentState!.validate() == true) {
       /// register
+      //  Navigator.of(context).pushNamed(ScreenSelection.routeName);
     }
   }
 }

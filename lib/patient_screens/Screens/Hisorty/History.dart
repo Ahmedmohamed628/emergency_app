@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
 
-class HistoryScreen extends StatelessWidget {
+import '../../../theme/theme.dart';
+
+class HistoryScreenPatient extends StatelessWidget {
   static const String routeName = 'History-screen';
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.blue,
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: MyTheme.redColor,
+        title: Text('History', style: TextStyle(color: MyTheme.whiteColor)),
+        centerTitle: true,
+      ),
+      backgroundColor: MyTheme.whiteColor,
     );
   }
 }

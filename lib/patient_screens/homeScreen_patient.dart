@@ -57,10 +57,10 @@ class _HomeScreenPatientState extends State<HomeScreenPatient> {
   }
 
   List<Widget> tabs = [
-    ChatScreen(),
+    ChatScreenPatient(),
     MedicationScreen(),
     RootScreen(),
-    HistoryScreen(),
+    HistoryScreenPatient(),
     SettingsScreen()
   ];
 }

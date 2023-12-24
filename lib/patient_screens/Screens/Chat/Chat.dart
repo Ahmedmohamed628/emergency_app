@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
 
-class ChatScreen extends StatelessWidget {
-  static const String routeName = 'Chat-screen';
+import '../../../theme/theme.dart';
+
+class ChatScreenPatient extends StatelessWidget {
+  static const String routeName = 'Chat-screen-patient';
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.amber,
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: MyTheme.redColor,
+        title: Text('Chat', style: TextStyle(color: MyTheme.whiteColor)),
+        centerTitle: true,
+      ),
+      backgroundColor: MyTheme.whiteColor,
     );
   }
 }
