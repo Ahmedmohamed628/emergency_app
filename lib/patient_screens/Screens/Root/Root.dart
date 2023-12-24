@@ -19,7 +19,7 @@ class _RootScreenState extends State<RootScreen> {
     super.initState();
     timer = Timer.periodic(Duration(seconds: 30), (timer) {
       fetchData(() {
-        print('-----Inside-------');
+        print('patient is fainting');
         timer.cancel();
       });
     });
