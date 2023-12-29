@@ -1,18 +1,65 @@
+import 'package:ambulance/observer_screens/Screens/Chat_observer/Chat_observer.dart';
+import 'package:ambulance/observer_screens/Screens/Settings_observer/Settings_observer.dart';
+import 'package:ambulance/patient_screens/Screens/Chat/Chat.dart';
+import 'package:ambulance/patient_screens/Screens/Medications/Medications.dart';
+import 'package:ambulance/patient_screens/Screens/Settings/Settings.dart';
 import 'package:ambulance/theme/theme.dart';
 import 'package:flutter/material.dart';
 
-class HomeScreenObserver extends StatelessWidget {
+import 'Screens/Root_observer/Root_observer.dart';
+
+class HomeScreenObserver extends StatefulWidget {
   static const String routeName = 'Home-screen-observer';
+
+  @override
+  State<HomeScreenObserver> createState() => _HomeScreenObserverState();
+}
+
+class _HomeScreenObserverState extends State<HomeScreenObserver> {
+  int selectedIndex = 2;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Observer'),
-        centerTitle: true,
-        backgroundColor: MyTheme.redColor,
+      bottomNavigationBar: Theme(
+        data: Theme.of(context).copyWith(
+          canvasColor: MyTheme.redColor,
+        ),
+        child: BottomAppBar(
+          color: MyTheme.redColor,
+          shape: CircularNotchedRectangle(),
+          notchMargin: 8,
+          child: BottomNavigationBar(
+            currentIndex: selectedIndex,
+            selectedItemColor: MyTheme.whiteColor,
+            unselectedItemColor: MyTheme.grayColor,
+            onTap: (index) {
+              selectedIndex = index;
+
+              setState(() {});
+            },
+            items: [
+              BottomNavigationBarItem(icon: Icon(Icons.chat), label: 'Chat'),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.medication_liquid), label: 'Medication'),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.home),
+                label: 'Home',
+              ),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.settings), label: 'Settings'),
+            ],
+          ),
+        ),
       ),
-      backgroundColor: MyTheme.whiteColor,
+      body: tabs[selectedIndex],
     );
   }
+
+  List<Widget> tabs = [
+    ChatScreenObserver(),
+    MedicationScreen(),
+    RootScreenObserver(),
+    SettingsScreenObserver()
+  ];
 }

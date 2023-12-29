@@ -1,6 +1,8 @@
 import 'package:ambulance/hospital_screens/Screens_of_hospital/Chat/Chat.dart';
 import 'package:ambulance/hospital_screens/Screens_of_hospital/Hisorty/History.dart';
 import 'package:ambulance/hospital_screens/Screens_of_hospital/Settings/Settings.dart';
+import 'package:ambulance/hospital_screens/Screens_of_hospital/ambulance/ambulance.dart';
+import 'package:ambulance/hospital_screens/Screens_of_hospital/root/root.dart';
 import 'package:ambulance/theme/theme.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +14,7 @@ class HomeScreenHospital extends StatefulWidget {
 }
 
 class _HomeScreenHospitalState extends State<HomeScreenHospital> {
-  int selectedIndex = 1;
+  int selectedIndex = 2;
 
   @override
   Widget build(BuildContext context) {
@@ -35,11 +37,12 @@ class _HomeScreenHospitalState extends State<HomeScreenHospital> {
               setState(() {});
             },
             items: [
-              // BottomNavigationBarItem(icon: Icon(Icons.medication_liquid), label: 'Medication'),
-              // BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+              BottomNavigationBarItem(icon: Icon(Icons.chat), label: 'Chat'),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.medication), label: 'Ambulance'),
+              BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
               BottomNavigationBarItem(
                   icon: Icon(Icons.history), label: 'History'),
-              BottomNavigationBarItem(icon: Icon(Icons.chat), label: 'Chat'),
               BottomNavigationBarItem(
                   icon: Icon(Icons.settings), label: 'Settings'),
             ],
@@ -51,10 +54,10 @@ class _HomeScreenHospitalState extends State<HomeScreenHospital> {
   }
 
   List<Widget> tabsHosbpital = [
-    // MedicationScreen(),
-    // RootScreen(),
-    HistoryScreenHospital(),
     ChatScreenHospital(),
+    AmbulanceScreenHospital(),
+    RootScreenHospital(),
+    HistoryScreenHospital(),
     SettingsScreenHospital()
   ];
 }

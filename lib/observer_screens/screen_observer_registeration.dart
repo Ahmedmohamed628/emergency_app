@@ -35,29 +35,6 @@ class ScreenObserverRegisteration extends StatelessWidget {
               Container(
                   padding: EdgeInsets.symmetric(horizontal: 30),
                   child: Lottie.asset('assets/images/observer_lottie.json')),
-              //age
-              CustomTextFormField(
-                label: 'Age', controller: age,
-                // mlhash suffixation icon??????????????????????????
-                validator: (text) {
-                  if (text == null || text.trim().isEmpty) {
-                    return 'Please enter your age';
-                  }
-                  return null;
-                },
-              ),
-              //gender
-              CustomTextFormField(
-                label: 'Gender', controller: age,
-                // mlhash suffixation icon??????????????????????????
-                prefixIcon: Icon(Icons.perm_identity, color: MyTheme.redColor),
-                validator: (text) {
-                  if (text == null || text.trim().isEmpty) {
-                    return 'Please enter your age';
-                  }
-                  return null;
-                },
-              ),
               //id
               CustomTextFormField(
                 label: 'National Id',
@@ -73,6 +50,30 @@ class ScreenObserverRegisteration extends StatelessWidget {
                   return null;
                 },
               ),
+              //gender
+              CustomTextFormField(
+                label: 'Gender', controller: gender,
+                // mlhash suffixation icon??????????????????????????
+                prefixIcon: Icon(Icons.perm_identity, color: MyTheme.redColor),
+                validator: (text) {
+                  if (text == null || text.trim().isEmpty) {
+                    return 'Please enter your gender';
+                  }
+                  return null;
+                },
+              ),
+              //age
+              CustomTextFormField(
+                label: 'Age', controller: age,
+                // mlhash suffixation icon??????????????????????????
+                validator: (text) {
+                  if (text == null || text.trim().isEmpty) {
+                    return 'Please enter your age';
+                  }
+                  return null;
+                },
+              ),
+              // lw 3ayz arbot el patient Id be el observer???????????????????????????????????????????
 
               // el spacer bydeny error????????????????????????????????????
               // SizedBox(height: MediaQuery.of(context).size.height*0.26),
