@@ -4,6 +4,7 @@ import 'package:ambulance/patient_screens/Screens/Medications/Medications.dart';
 import 'package:ambulance/theme/theme.dart';
 import 'package:flutter/material.dart';
 
+import '../hospital_screens/Screens_of_hospital/deaf/deaf.dart';
 import 'Screens/Root_observer/Root_observer.dart';
 
 class HomeScreenObserver extends StatefulWidget {
@@ -47,6 +48,8 @@ class _HomeScreenObserverState extends State<HomeScreenObserver> {
                 label: 'Home',
               ),
               BottomNavigationBarItem(
+                  icon: Icon(Icons.volume_off, size: 22), label: 'Deaf'),
+              BottomNavigationBarItem(
                   icon: Icon(Icons.settings, size: 22), label: 'Settings'),
             ],
           ),
@@ -60,6 +63,7 @@ class _HomeScreenObserverState extends State<HomeScreenObserver> {
     ChatScreenObserver(),
     MedicationScreen(),
     RootScreenObserver(),
+    DeafScreenHospital(),
     SettingsScreenObserver()
   ];
 }

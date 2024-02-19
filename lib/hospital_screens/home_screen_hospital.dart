@@ -6,6 +6,8 @@ import 'package:ambulance/hospital_screens/Screens_of_hospital/root/root.dart';
 import 'package:ambulance/theme/theme.dart';
 import 'package:flutter/material.dart';
 
+import 'Screens_of_hospital/deaf/deaf.dart';
+
 class HomeScreenHospital extends StatefulWidget {
   static const String routeName = 'Home-screen-hospital';
 
@@ -46,6 +48,8 @@ class _HomeScreenHospitalState extends State<HomeScreenHospital> {
               BottomNavigationBarItem(
                   icon: Icon(Icons.history, size: 22), label: 'History'),
               BottomNavigationBarItem(
+                  icon: Icon(Icons.volume_off, size: 22), label: 'Deaf'),
+              BottomNavigationBarItem(
                   icon: Icon(Icons.settings, size: 22), label: 'Settings'),
             ],
           ),
@@ -60,6 +64,7 @@ class _HomeScreenHospitalState extends State<HomeScreenHospital> {
     AmbulanceScreenHospital(),
     RootScreenHospital(),
     HistoryScreenHospital(),
+    DeafScreenHospital(),
     SettingsScreenHospital()
   ];
 }
