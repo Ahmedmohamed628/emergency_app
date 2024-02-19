@@ -46,7 +46,7 @@ class _HomeScreenHospitalState extends State<HomeScreenHospital> {
               BottomNavigationBarItem(
                   icon: Icon(Icons.history, size: 22), label: 'History'),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.settings), label: 'Settings'),
+                  icon: Icon(Icons.settings, size: 22), label: 'Settings'),
             ],
           ),
         ),
