@@ -30,7 +30,7 @@ class _RootScreenState extends State<RootScreen> {
     return Scaffold(
       backgroundColor: MyTheme.whiteColor,
       appBar: AppBar(
-        title: Text("Ambulance"),
+        title: Text("Ambulance", style: TextStyle(color: MyTheme.whiteColor)),
         centerTitle: true,
         backgroundColor: Color(0xFFa00c0e),
       ),

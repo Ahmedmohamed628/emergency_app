@@ -37,17 +37,19 @@ class _HomeScreenPatientState extends State<HomeScreenPatient> {
               setState(() {});
             },
             items: [
-              BottomNavigationBarItem(icon: Icon(Icons.chat), label: 'Chat'),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.medication_liquid), label: 'Medication'),
+                  icon: Icon(Icons.chat, size: 22), label: 'Chat'),
               BottomNavigationBarItem(
-                icon: Icon(Icons.home),
+                  icon: Icon(Icons.medication_liquid, size: 22),
+                  label: 'Medication'),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.home, size: 22),
                 label: 'Home',
               ),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.history), label: 'History'),
+                  icon: Icon(Icons.history, size: 22), label: 'History'),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.settings), label: 'Settings'),
+                  icon: Icon(Icons.settings, size: 22), label: 'Settings'),
             ],
           ),
         ),

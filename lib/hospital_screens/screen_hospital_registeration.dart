@@ -19,7 +19,7 @@ class ScreenHospitalRegisteration extends StatelessWidget {
       backgroundColor: MyTheme.whiteColor,
       appBar: AppBar(
           backgroundColor: MyTheme.redColor,
-          title: Text('Hospital'),
+          title: Text('Hospital', style: TextStyle(color: MyTheme.whiteColor)),
           centerTitle: true,
           leading: IconButton(
               onPressed: () {

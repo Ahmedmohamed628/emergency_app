@@ -1,7 +1,10 @@
+import 'package:ambulance/authentication/register/register_navigator.dart';
+import 'package:ambulance/authentication/register/register_screen_view_model.dart';
 import 'package:ambulance/screen_selection/screen_selection.dart';
 import 'package:ambulance/theme/theme.dart';
 import 'package:flutter/material.dart';
 
+import '../../dialog_utils.dart';
 import '../component/custom_text_form_field.dart';
 import '../login/login_screen.dart';
 
@@ -12,14 +15,23 @@ class RegisterScreen extends StatefulWidget {
   State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
-class _RegisterScreenState extends State<RegisterScreen> {
+class _RegisterScreenState extends State<RegisterScreen>
+    implements RegisterNavigator {
   var nameController = TextEditingController();
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
   var confirmationPasswordController = TextEditingController();
-  var formKey = GlobalKey<FormState>();
   var phoneNumber = TextEditingController();
   var address = TextEditingController();
+  var formKey = GlobalKey<FormState>();
+  RegisterScreenViewModel viewModelRegister = RegisterScreenViewModel();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    viewModelRegister.navigator = this;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +40,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: MyTheme.redColor,
-        title: Text('Ambulance App'),
+        title:
+            Text('Ambulance App', style: TextStyle(color: MyTheme.whiteColor)),
         centerTitle: true,
       ),
 
@@ -78,7 +91,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               return 'Please Enter An Email';
                             }
                             bool emailValid = RegExp(
-                                    r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                                r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                                 .hasMatch(text);
                             if (!emailValid) {
                               return 'Please Enter Valid Email';
@@ -94,7 +107,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           if (text == null || text.trim().isEmpty) {
                             return 'Please enter a phone number';
                           }
-                          if (text.length < 12) {
+                          if (text.length < 11) {
                             return 'Enter a valid phone number';
                           }
                           return null;
@@ -105,13 +118,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         label: 'Address',
                         controller: address,
                         prefixIcon:
-                            Icon(Icons.home_filled, color: MyTheme.redColor),
+                        Icon(Icons.home_filled, color: MyTheme.redColor),
                         validator: (text) {
                           if (text == null || text.trim().isEmpty) {
                             return 'Please enter an address';
                           }
                           // valid address???????????????????????????????????????????
-                          if (text.length < 12) {
+                          if (text.length < 6) {
                             return 'Enter a valid address';
                           }
                           return null;
@@ -137,7 +150,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       //confirm pass
                       CustomTextFormField(
                         prefixIcon:
-                            Icon(Icons.password, color: MyTheme.redColor),
+                        Icon(Icons.password, color: MyTheme.redColor),
                         //lock_outline_sharp
                         label: 'Confirm Password',
                         keyboardType: TextInputType.number,
@@ -159,9 +172,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             horizontal: 20, vertical: 10),
                         child: ElevatedButton(
                           onPressed: () {
-                            register();
-                            Navigator.of(context)
-                                .pushNamed(ScreenSelection.routeName);
+                            // register();
+                            Navigator.of(context).pushReplacementNamed(
+                                ScreenSelection.routeName);
                           },
                           child: Text('Register',
                               style: TextStyle(
@@ -202,10 +215,33 @@ class _RegisterScreenState extends State<RegisterScreen> {
     );
   }
 
-  void register() {
-    if (formKey.currentState!.validate() == true) {
-      /// register
-      //  Navigator.of(context).pushNamed(ScreenSelection.routeName);
+  void register() async {
+    if (formKey.currentState?.validate() == true) {
+      viewModelRegister.register(
+          nameController.text,
+          emailController.text,
+          phoneNumber.text,
+          address.text,
+          passwordController.text,
+          confirmationPasswordController.text);
     }
+  }
+
+  @override
+  void hideMyLoading() {
+    // TODO: implement hideMyLoading
+    DialogUtils.hideLoading(context);
+  }
+
+  @override
+  void showMessage(String message) {
+    // TODO: implement showMessage
+    DialogUtils.showMessage(context, message, posActionName: 'ok');
+  }
+
+  @override
+  void showMyLoading() {
+    // TODO: implement showMyLoading
+    DialogUtils.showLoading(context, 'Loading...');
   }
 }

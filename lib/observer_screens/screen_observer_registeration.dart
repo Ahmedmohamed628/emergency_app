@@ -1,4 +1,3 @@
-import 'package:ambulance/screen_selection/screen_selection.dart';
 import 'package:ambulance/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -18,14 +17,15 @@ class ScreenObserverRegisteration extends StatelessWidget {
     return Scaffold(
       backgroundColor: MyTheme.whiteColor,
       appBar: AppBar(
-          backgroundColor: MyTheme.redColor,
-          title: Text('Observer'),
-          centerTitle: true,
-          leading: IconButton(
-              onPressed: () {
-                Navigator.of(context).pop(ScreenSelection.routeName);
-              },
-              icon: Icon(Icons.arrow_back))),
+        backgroundColor: MyTheme.redColor,
+        title: Text('Observer', style: TextStyle(color: MyTheme.whiteColor)),
+        centerTitle: true,
+        // leading: IconButton(
+        //     onPressed: () {
+        //       Navigator.of(context).pop(ScreenSelection.routeName);
+        //     },
+        //     icon: Icon(Icons.arrow_back))
+      ),
       body: SingleChildScrollView(
         child: Form(
           key: formKey,

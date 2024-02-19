@@ -22,7 +22,7 @@ class _RootScreenHospitalState extends State<RootScreenHospital> {
               onPressed: () {
                 Navigator.of(context).pop(ScreenSelection.routeName);
               },
-              icon: Icon(Icons.arrow_back))),
+              icon: Icon(Icons.arrow_back, color: MyTheme.whiteColor))),
       backgroundColor: MyTheme.whiteColor,
     );
   }

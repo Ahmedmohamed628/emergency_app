@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-import '../screen_selection/screen_selection.dart';
 import '../theme/theme.dart';
 
 class ScreenPatientRegisteration extends StatelessWidget {
@@ -22,14 +21,10 @@ class ScreenPatientRegisteration extends StatelessWidget {
     return Scaffold(
       backgroundColor: MyTheme.whiteColor,
       appBar: AppBar(
-          backgroundColor: MyTheme.redColor,
-          title: Text('Patient'),
-          centerTitle: true,
-          leading: IconButton(
-              onPressed: () {
-                Navigator.of(context).pop(ScreenSelection.routeName);
-              },
-              icon: Icon(Icons.arrow_back))),
+        backgroundColor: MyTheme.redColor,
+        title: Text('Patient', style: TextStyle(color: MyTheme.whiteColor)),
+        centerTitle: true,
+      ),
       body: SingleChildScrollView(
         child: Form(
           key: formKey,
