@@ -55,11 +55,11 @@ class _HomeScreenHospitalState extends State<HomeScreenHospital> {
           ),
         ),
       ),
-      body: tabsHosbpital[selectedIndex],
+      body: tabsHospital[selectedIndex],
     );
   }
 
-  List<Widget> tabsHosbpital = [
+  List<Widget> tabsHospital = [
     ChatScreenHospital(),
     AmbulanceScreenHospital(),
     RootScreenHospital(),
