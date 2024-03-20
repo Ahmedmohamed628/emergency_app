@@ -11,19 +11,11 @@ import '../register/register_screen.dart';
 class LoginScreen extends StatefulWidget {
   static const String routeName = 'login-screen';
 
-  // feh moshkela fe el index????????????????????????????????????????????????????????????????????????????????????????????
-  // int index;
-  // LoginScreen({required this.index});
-
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> implements LoginNavigator {
-  var nameController = TextEditingController();
-  var emailController = TextEditingController();
-  var passwordController = TextEditingController();
-  var confirmationPasswordController = TextEditingController();
   bool isObscure = true;
   LoginScreenViewModel viewModel = LoginScreenViewModel();
 
@@ -34,12 +26,8 @@ class _LoginScreenState extends State<LoginScreen> implements LoginNavigator {
     viewModel.navigator = this;
   }
 
-  // List<String> homeScreens = [HomeScreenPatient.routeName, HomeScreenHospital.routeName, HomeScreenObserver.routeName];
-
   @override
   Widget build(BuildContext context) {
-    // 3lshan ageeb el index mn el args
-    // int index = ModalRoute.of(context)!.settings.arguments as int;
     return ChangeNotifierProvider(
       create: (context) => viewModel,
       child: Scaffold(
@@ -77,7 +65,7 @@ class _LoginScreenState extends State<LoginScreen> implements LoginNavigator {
                                 color: MyTheme.redColor),
                             label: 'Email address',
                             keyboardType: TextInputType.emailAddress,
-                            controller: emailController,
+                            controller: viewModel.emailController,
                             validator: (text) {
                               if (text == null || text.trim().isEmpty) {
                                 return 'Please Enter an Email';
@@ -96,7 +84,7 @@ class _LoginScreenState extends State<LoginScreen> implements LoginNavigator {
                             label: 'Password',
                             isPassword: isObscure,
                             keyboardType: TextInputType.number,
-                            controller: passwordController,
+                            controller: viewModel.passwordController,
                             validator: (text) {
                               if (text == null || text.trim().isEmpty) {
                                 return 'Please Enter a Password';
@@ -104,7 +92,7 @@ class _LoginScreenState extends State<LoginScreen> implements LoginNavigator {
                               if (text.length < 6) {
                                 return 'Password should be at least 6 characters';
                               }
-                              if (text != passwordController.text) {
+                              if (text != viewModel.passwordController.text) {
                                 return "password doesn't match";
                               }
                               return null;
@@ -165,35 +153,14 @@ class _LoginScreenState extends State<LoginScreen> implements LoginNavigator {
   }
 
   @override
-  void showMessage(String message) {
-    // TODO: implement showMessage
-    DialogUtils.showMessage(context, message, posActionName: 'ok');
-  }
-
-  @override
   void showMyLoading() {
     // TODO: implement showMyLoading
     DialogUtils.showLoading(context, 'Loading...');
   }
-}
 
-//FutureBuilder<LoginResponse>(
-//         future: ApiManager.login(),
-//         builder:(context, snapshot) {
-//           if(snapshot.connectionState == ConnectionState.waiting){
-//             return Center(
-//               child: CircularProgressIndicator(),
-//             );
-//           }
-//           else if (snapshot.hasError){
-//             return Column(
-//               children: [
-//                 Text('something went wrong'),
-//                 ElevatedButton(onPressed: (){}, child: Text('try again'))
-//               ],
-//             );
-//           }
-//           if(snapshot.data.massage)
-//
-//         }) ,
-//         child:
+  @override
+  void showMessage(String message) {
+    // TODO: implement showMessage
+    DialogUtils.showMessage(context, message, posActionName: 'ok');
+  }
+}

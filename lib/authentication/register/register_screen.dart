@@ -1,6 +1,5 @@
 import 'package:ambulance/authentication/register/register_navigator.dart';
 import 'package:ambulance/authentication/register/register_screen_view_model.dart';
-import 'package:ambulance/screen_selection/screen_selection.dart';
 import 'package:ambulance/theme/theme.dart';
 import 'package:flutter/material.dart';
 
@@ -17,12 +16,12 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen>
     implements RegisterNavigator {
-  var nameController = TextEditingController();
-  var emailController = TextEditingController();
-  var passwordController = TextEditingController();
-  var confirmationPasswordController = TextEditingController();
-  var phoneNumber = TextEditingController();
-  var address = TextEditingController();
+  var nameController = TextEditingController(text: 'ahmed');
+  var emailController = TextEditingController(text: 'ahmed.mohamed7@gmail.com');
+  var passwordController = TextEditingController(text: '123456');
+  var confirmationPasswordController = TextEditingController(text: '123456');
+  var phoneNumber = TextEditingController(text: '01228384694');
+  var address = TextEditingController(text: 'alexandria');
   var formKey = GlobalKey<FormState>();
   RegisterScreenViewModel viewModelRegister = RegisterScreenViewModel();
 
@@ -124,7 +123,7 @@ class _RegisterScreenState extends State<RegisterScreen>
                             return 'Please enter an address';
                           }
                           // valid address???????????????????????????????????????????
-                          if (text.length < 6) {
+                          if (text.length < 4) {
                             return 'Enter a valid address';
                           }
                           return null;
@@ -172,9 +171,9 @@ class _RegisterScreenState extends State<RegisterScreen>
                             horizontal: 20, vertical: 10),
                         child: ElevatedButton(
                           onPressed: () {
-                            // register();
-                            Navigator.of(context).pushReplacementNamed(
-                                ScreenSelection.routeName);
+                            register();
+                            // Navigator.of(context).pushReplacementNamed(
+                            //     ScreenSelection.routeName);
                           },
                           child: Text('Register',
                               style: TextStyle(
@@ -217,13 +216,7 @@ class _RegisterScreenState extends State<RegisterScreen>
 
   void register() async {
     if (formKey.currentState?.validate() == true) {
-      viewModelRegister.register(
-          nameController.text,
-          emailController.text,
-          phoneNumber.text,
-          address.text,
-          passwordController.text,
-          confirmationPasswordController.text);
+      viewModelRegister.register(emailController.text, passwordController.text);
     }
   }
 

@@ -1,3 +1,4 @@
+import 'package:ambulance/firebase_options.dart';
 import 'package:ambulance/hospital_screens/Screens_of_hospital/Chat/Chat.dart';
 import 'package:ambulance/hospital_screens/Screens_of_hospital/Hisorty/History.dart';
 import 'package:ambulance/hospital_screens/Screens_of_hospital/Settings/Settings.dart';
@@ -14,12 +15,17 @@ import 'package:ambulance/patient_screens/homeScreen_patient.dart';
 import 'package:ambulance/patient_screens/screen_patient_registeration.dart';
 import 'package:ambulance/screen_selection/screen_selection.dart';
 import 'package:ambulance/splash_screen/splash_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 import 'authentication/login/login_screen.dart';
 import 'authentication/register/register_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(MyApp());
 }
 
