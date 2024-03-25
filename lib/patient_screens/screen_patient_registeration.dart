@@ -4,17 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:permission_handler/permission_handler.dart';
 
+import '../authentication/register/register_screen_view_model.dart';
 import '../theme/theme.dart';
 
 class ScreenPatientRegisteration extends StatelessWidget {
   static const String routeName = 'screen-patient';
-  var chronicDiseases = TextEditingController();
-  var height = TextEditingController();
-  var weight = TextEditingController();
-  var age = TextEditingController();
-  var gender = TextEditingController();
-  var id = TextEditingController();
-  var formKey = GlobalKey<FormState>();
+
+  // var formKey = GlobalKey<FormState>();
+  RegisterScreenViewModel viewModelRegister = RegisterScreenViewModel();
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +24,7 @@ class ScreenPatientRegisteration extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Form(
-          key: formKey,
+          key: viewModelRegister.formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
@@ -36,25 +33,26 @@ class ScreenPatientRegisteration extends StatelessWidget {
                   child: Lottie.asset('assets/images/patient_lottie.json')),
               //chronic diseases
               CustomTextFormField(
-                label: 'Chronic Diseases', controller: chronicDiseases,
+                label: 'Chronic Diseases',
+                controller: viewModelRegister.chronicDiseases,
                 // mlhash suffixation icon???????????????????????????
                 // ezay a5ly el diseases optional????????????????????????????
                 validator: (text) {
                   if (text == null || text.trim().isEmpty) {
-                    return 'Please enter an address';
+                    return 'Please enter a Chronic Diseases';
                   }
                   // valid address???????????????????????????????????????????
-                  if (text.length < 12) {
-                    return 'Enter a valid address';
-                  }
+                  // if (text.length < 12) {
+                  //   return 'Enter a valid address';
+                  // }
                   return null;
                 },
               ),
               //height
               CustomTextFormField(
-                label: 'Height', controller: height,
+                label: 'Height',
+                controller: viewModelRegister.height,
                 prefixIcon: Icon(Icons.height, color: MyTheme.redColor),
-                // ezay a5ly el diseases optional????????????????????????????
                 validator: (text) {
                   if (text == null || text.trim().isEmpty) {
                     return 'Please enter your height';
@@ -64,7 +62,7 @@ class ScreenPatientRegisteration extends StatelessWidget {
               ),
               //weight
               CustomTextFormField(
-                label: 'Weight', controller: weight,
+                label: 'Weight', controller: viewModelRegister.weight,
                 // mlhash suffixation icon??????????????????????????
                 validator: (text) {
                   if (text == null || text.trim().isEmpty) {
@@ -75,7 +73,7 @@ class ScreenPatientRegisteration extends StatelessWidget {
               ),
               //age
               CustomTextFormField(
-                label: 'Age', controller: age,
+                label: 'Age', controller: viewModelRegister.age,
                 // mlhash suffixation icon??????????????????????????
                 validator: (text) {
                   if (text == null || text.trim().isEmpty) {
@@ -86,7 +84,7 @@ class ScreenPatientRegisteration extends StatelessWidget {
               ),
               //gender
               CustomTextFormField(
-                label: 'Gender', controller: gender,
+                label: 'Gender', controller: viewModelRegister.gender,
                 // mlhash suffixation icon??????????????????????????
                 prefixIcon: Icon(Icons.perm_identity, color: MyTheme.redColor),
                 validator: (text) {
@@ -99,7 +97,7 @@ class ScreenPatientRegisteration extends StatelessWidget {
               //id
               CustomTextFormField(
                 label: 'National Id',
-                controller: id,
+                controller: viewModelRegister.nationalId,
                 prefixIcon: Icon(Icons.perm_identity, color: MyTheme.redColor),
                 validator: (text) {
                   if (text == null || text.trim().isEmpty) {
@@ -118,11 +116,10 @@ class ScreenPatientRegisteration extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: () {
                     // navigate to home screen patient
+                    // viewModelRegister.register(context);
                     Navigator.of(context)
                         .pushReplacementNamed(HomeScreenPatient.routeName);
                     authorize();
-
-                    // Navigator.of(context).pushReplacementNamed(LoginScreen.routeName, arguments: 0);
                   },
                   child: Text('Done',
                       style: TextStyle(

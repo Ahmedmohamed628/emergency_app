@@ -1,3 +1,4 @@
+import 'package:ambulance/theme/theme.dart';
 import 'package:flutter/material.dart';
 
 class DialogUtils {
@@ -9,7 +10,9 @@ class DialogUtils {
           return AlertDialog(
             content: Row(
               children: [
-                CircularProgressIndicator(),
+                CircularProgressIndicator(
+                  color: MyTheme.redColor,
+                ),
                 SizedBox(
                   width: 12,
                 ),
@@ -38,7 +41,10 @@ class DialogUtils {
             Navigator.pop(context);
             posAction?.call();
           },
-          child: Text(posActionName)));
+          child: Text(
+            posActionName,
+            style: TextStyle(fontSize: 17),
+          )));
     }
     if (negActionName != null) {
       actions.add(TextButton(

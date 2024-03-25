@@ -16,13 +16,7 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen>
     implements RegisterNavigator {
-  var nameController = TextEditingController(text: 'ahmed');
-  var emailController = TextEditingController(text: 'ahmed.mohamed7@gmail.com');
-  var passwordController = TextEditingController(text: '123456');
   var confirmationPasswordController = TextEditingController(text: '123456');
-  var phoneNumber = TextEditingController(text: '01228384694');
-  var address = TextEditingController(text: 'alexandria');
-  var formKey = GlobalKey<FormState>();
   RegisterScreenViewModel viewModelRegister = RegisterScreenViewModel();
 
   @override
@@ -58,7 +52,7 @@ class _RegisterScreenState extends State<RegisterScreen>
             ),
             // Image.asset('assets/images/ambulance_icon.png', alignment: Alignment.topCenter),
             Form(
-                key: formKey,
+                key: viewModelRegister.formKey,
                 child: Container(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -71,7 +65,7 @@ class _RegisterScreenState extends State<RegisterScreen>
                               color: MyTheme.redColor),
                           //Icons.drive_file_rename_outline
                           label: 'User Name',
-                          controller: nameController,
+                          controller: viewModelRegister.nameController,
                           validator: (text) {
                             if (text == null || text.trim().isEmpty) {
                               return 'Please Enter User Name';
@@ -84,7 +78,7 @@ class _RegisterScreenState extends State<RegisterScreen>
                               color: MyTheme.redColor),
                           label: 'Email address',
                           keyboardType: TextInputType.emailAddress,
-                          controller: emailController,
+                          controller: viewModelRegister.emailController,
                           validator: (text) {
                             if (text == null || text.trim().isEmpty) {
                               return 'Please Enter An Email';
@@ -100,7 +94,7 @@ class _RegisterScreenState extends State<RegisterScreen>
                       // phone
                       CustomTextFormField(
                         label: 'Phone number',
-                        controller: phoneNumber,
+                        controller: viewModelRegister.phoneNumber,
                         prefixIcon: Icon(Icons.phone, color: MyTheme.redColor),
                         validator: (text) {
                           if (text == null || text.trim().isEmpty) {
@@ -115,7 +109,7 @@ class _RegisterScreenState extends State<RegisterScreen>
                       //address
                       CustomTextFormField(
                         label: 'Address',
-                        controller: address,
+                        controller: viewModelRegister.address,
                         prefixIcon:
                             Icon(Icons.home_filled, color: MyTheme.redColor),
                         validator: (text) {
@@ -134,7 +128,7 @@ class _RegisterScreenState extends State<RegisterScreen>
                         prefixIcon: Icon(Icons.lock, color: MyTheme.redColor),
                         label: 'Password',
                         keyboardType: TextInputType.number,
-                        controller: passwordController,
+                        controller: viewModelRegister.passwordController,
                         validator: (text) {
                           if (text == null || text.trim().isEmpty) {
                             return 'Please Enter a password';
@@ -158,7 +152,8 @@ class _RegisterScreenState extends State<RegisterScreen>
                           if (text == null || text.trim().isEmpty) {
                             return 'Please Enter the Confirmation Password';
                           }
-                          if (text != passwordController.text) {
+                          if (text !=
+                              viewModelRegister.passwordController.text) {
                             return "password doesn't match";
                           }
                           return null;
@@ -171,9 +166,8 @@ class _RegisterScreenState extends State<RegisterScreen>
                             horizontal: 20, vertical: 10),
                         child: ElevatedButton(
                           onPressed: () {
-                            register();
-                            // Navigator.of(context).pushReplacementNamed(
-                            //     ScreenSelection.routeName);
+                            // cMethods.checkConnectivity(context);
+                            viewModelRegister.register(context);
                           },
                           child: Text('Register',
                               style: TextStyle(
@@ -214,11 +208,12 @@ class _RegisterScreenState extends State<RegisterScreen>
     );
   }
 
-  void register() async {
-    if (formKey.currentState?.validate() == true) {
-      viewModelRegister.register(emailController.text, passwordController.text);
-    }
-  }
+  // void register() async {
+  //   if (formKey.currentState?.validate() == true) {
+  //     viewModelRegister.register(emailController.text, passwordController.text, context);
+  //     // Navigator.pushReplacementNamed(context, ScreenSelection.routeName );
+  //   }
+  // }
 
   @override
   void hideMyLoading() {
@@ -227,14 +222,15 @@ class _RegisterScreenState extends State<RegisterScreen>
   }
 
   @override
-  void showMessage(String message) {
-    // TODO: implement showMessage
-    DialogUtils.showMessage(context, message, posActionName: 'ok');
-  }
-
-  @override
   void showMyLoading() {
     // TODO: implement showMyLoading
     DialogUtils.showLoading(context, 'Loading...');
+  }
+
+  @override
+  void showMessage(String message) {
+    // TODO: implement showMessage
+    DialogUtils.showMessage(context, message,
+        posActionName: 'ok', title: 'Sign-Up', barrierDismissible: false);
   }
 }

@@ -9,11 +9,11 @@ class ScreenSelection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          leading: IconButton(
-              onPressed: () {
-                Navigator.of(context).pop(ScreenSelection.routeName);
-              },
-              icon: Icon(Icons.arrow_back, color: MyTheme.whiteColor)),
+          // leading: IconButton(
+          //     onPressed: () {
+          //       Navigator.of(context).pop(ScreenSelection.routeName);
+          //     },
+          //     icon: Icon(Icons.arrow_back, color: MyTheme.whiteColor)),
           title: Text('Choose your Status',
               style: TextStyle(
                   color: MyTheme.whiteColor,

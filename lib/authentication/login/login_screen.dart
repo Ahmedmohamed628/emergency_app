@@ -1,6 +1,7 @@
 import 'package:ambulance/authentication/login/login_navigator.dart';
 import 'package:ambulance/authentication/login/login_screen_view_model.dart';
 import 'package:ambulance/dialog_utils.dart';
+import 'package:ambulance/methods/common_methods.dart';
 import 'package:ambulance/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -17,25 +18,27 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> implements LoginNavigator {
   bool isObscure = true;
-  LoginScreenViewModel viewModel = LoginScreenViewModel();
+  LoginScreenViewModel viewModelLogin = LoginScreenViewModel();
+  CommonMethods cMethods = CommonMethods();
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    viewModel.navigator = this;
+    viewModelLogin.navigator = this;
   }
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => viewModel,
+      create: (context) => viewModelLogin,
       child: Scaffold(
         // resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: MyTheme.redColor,
-          title: Text('Ambulance App'),
+          title: Text('Ambulance App',
+              style: TextStyle(color: MyTheme.whiteColor)),
           centerTitle: true,
         ),
 
@@ -53,7 +56,7 @@ class _LoginScreenState extends State<LoginScreen> implements LoginNavigator {
                 ),
               ),
               Form(
-                  key: viewModel.formKey,
+                  key: viewModelLogin.formKey,
                   child: Container(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -65,7 +68,7 @@ class _LoginScreenState extends State<LoginScreen> implements LoginNavigator {
                                 color: MyTheme.redColor),
                             label: 'Email address',
                             keyboardType: TextInputType.emailAddress,
-                            controller: viewModel.emailController,
+                            controller: viewModelLogin.emailController,
                             validator: (text) {
                               if (text == null || text.trim().isEmpty) {
                                 return 'Please Enter an Email';
@@ -84,7 +87,7 @@ class _LoginScreenState extends State<LoginScreen> implements LoginNavigator {
                             label: 'Password',
                             isPassword: isObscure,
                             keyboardType: TextInputType.number,
-                            controller: viewModel.passwordController,
+                            controller: viewModelLogin.passwordController,
                             validator: (text) {
                               if (text == null || text.trim().isEmpty) {
                                 return 'Please Enter a Password';
@@ -92,7 +95,8 @@ class _LoginScreenState extends State<LoginScreen> implements LoginNavigator {
                               if (text.length < 6) {
                                 return 'Password should be at least 6 characters';
                               }
-                              if (text != viewModel.passwordController.text) {
+                              if (text !=
+                                  viewModelLogin.passwordController.text) {
                                 return "password doesn't match";
                               }
                               return null;
@@ -102,10 +106,7 @@ class _LoginScreenState extends State<LoginScreen> implements LoginNavigator {
                               horizontal: 20, vertical: 10),
                           child: ElevatedButton(
                             onPressed: () {
-                              // Navigator.of(context).pushReplacementNamed(HomeScreenPatient.routeName);
-                              // Navigator.of(context).pushNamed(homeScreens[index]);
-
-                              viewModel.login();
+                              viewModelLogin.login(context);
                             },
                             child: Text('Login',
                                 style: TextStyle(
@@ -161,6 +162,15 @@ class _LoginScreenState extends State<LoginScreen> implements LoginNavigator {
   @override
   void showMessage(String message) {
     // TODO: implement showMessage
-    DialogUtils.showMessage(context, message, posActionName: 'ok');
+    DialogUtils.showMessage(
+      context,
+      message,
+      posActionName: 'ok',
+      title: 'Sign-In',
+      barrierDismissible: false,
+      posAction: () {
+        // h3ml navigate ll home screen
+      },
+    );
   }
 }
